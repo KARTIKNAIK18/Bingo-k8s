@@ -2,22 +2,22 @@ pipeline{
     agent any
 
     stages{
-        stage{
+        stage("1"){
             step{
                     echo "====++++something++++===="
             }
         }
-        stage{
+        stage("2"){
             step{
                 echo "====++++something++++===="
             }
         }
-        stage{
+        stage("3"){
             step{
                 echo "====++++something++++===="
             }
         }
-        stage{
+        stage("4"){
             step{
                 echo "====++++something++++===="
             }
