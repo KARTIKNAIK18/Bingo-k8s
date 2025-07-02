@@ -3,22 +3,22 @@ pipeline{
 
     stages{
         stage("1"){
-            step{
+            steps{
                     echo "====++++something++++===="
             }
         }
         stage("2"){
-            step{
+            steps{
                 echo "====++++something++++===="
             }
         }
         stage("3"){
-            step{
+            steps{
                 echo "====++++something++++===="
             }
         }
         stage("4"){
-            step{
+            steps{
                 echo "====++++something++++===="
             }
         }
