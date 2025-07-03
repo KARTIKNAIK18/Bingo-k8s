@@ -38,18 +38,11 @@ pipeline{
                 echo "trying to login docker-hub ........."
                 withCredentials([usernamePassword(credentialsId: 'docker-cred',usernameVariable: 'DOCKER_USER',passwordVariable: 'DOCKER_PASS')]){
                     sh 'echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin'
+                    sh 'docker build -t $DOCKER_USER/bingo:latest .'
                 }
             }
         }
-        stage("docker image build"){
-            steps{
-                echo "image build started"
-                script{
-                       sh  'docker build -t $DOCKER_USER/Bingo:latest .'
-                    //    sh  'docker push $DOCKER_USER/Bingo:latest'
-                }
-            }
-        }
+
 
     }
 }
