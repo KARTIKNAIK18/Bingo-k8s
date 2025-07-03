@@ -1,26 +1,34 @@
 pipeline{
     agent any
+     tools {
+        // Replace with your SonarQube Scanner tool name
+        sonarQubeScanner 'SonarScanner'
+    }
 
+       environment {
+        // Replace with your SonarQube server name from Jenkins settings
+        SONARQUBE_ENV = 'sonarqube'
+    }
     stages{
-        stage("1"){
+        stage("git cheackout"){
             steps{
-                    echo "====++++something++++===="
+                    git branch: 'main', url: 'https://github.com/KARTIKNAIK18/Bingo-k8s.git'
             }
         }
-        stage("2"){
+        stage("Sonarqube analysis"){
             steps{
-                echo "====++++something++++===="
+                withSonarQubeEnv("${SONARQUBE_ENV}"){
+                    sh 'mvn clean package sonar:sonar'
+                }
             }
         }
-        stage("3"){
+        stage("Quality Gate"){
             steps{
-                echo "====++++something++++===="
+                timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
             }
         }
-        stage("4"){
-            steps{
-                echo "====++++something++++===="
-            }
-        }
+
     }
 }
