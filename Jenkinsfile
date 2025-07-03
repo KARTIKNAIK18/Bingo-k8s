@@ -16,11 +16,7 @@ pipeline{
         stage("Sonarqube analysis"){
             steps{
                 withSonarQubeEnv("${SONARQUBE_ENV}"){
-                    sh '''
-                        sonar-scanner \
-                        -Dsonar.projectKey=your-project-key \
-                        -Dsonar.sources=.
-                    '''
+                   sh 'mvn clean package sonar:sonar'
                 }
             }
         }
