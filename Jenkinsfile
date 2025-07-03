@@ -41,6 +41,15 @@ pipeline{
                 }
             }
         }
+        stage("docker image build"){
+            steps{
+                echo "image build started"
+                script{
+                       sh  'docker build -t $DOCKER_USER/Bingo:latest .'
+                    //    sh  'docker push $DOCKER_USER/Bingo:latest'
+                }
+            }
+        }
 
     }
 }
