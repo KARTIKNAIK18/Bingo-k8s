@@ -1,12 +1,15 @@
 pipeline{
     agent any
+
      tools {
         sonarQubeScanner 'sonarqube' // Replace with your SonarQube Scanner tool name
     }
+
        environment {
         
         SONARQUBE_ENV = 'sonarqube' // Replace with your SonarQube server name from Jenkins settings
     }
+
     stages{
         stage("git cheackout"){
             steps{
@@ -16,7 +19,11 @@ pipeline{
         stage("Sonarqube analysis"){
             steps{
                 withSonarQubeEnv("${SONARQUBE_ENV}"){
-                    sh 'mvn clean package sonar:sonar'
+                    sh '''
+                        sonar-scanner \
+                        -Dsonar.projectKey=your-project-key \
+                        -Dsonar.sources=.
+                    '''
                 }
             }
         }
