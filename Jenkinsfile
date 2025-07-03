@@ -1,16 +1,11 @@
 pipeline{
     agent any
      tools {
-        // Replace with your SonarQube Scanner tool name
-        tools {
-    sonarQubeScanner 'sonarqube'
-            }
-
+        sonarQubeScanner 'sonarqube' // Replace with your SonarQube Scanner tool name
     }
-
        environment {
-        // Replace with your SonarQube server name from Jenkins settings
-        SONARQUBE_ENV = 'sonarqube'
+        
+        SONARQUBE_ENV = 'sonarqube' // Replace with your SonarQube server name from Jenkins settings
     }
     stages{
         stage("git cheackout"){
