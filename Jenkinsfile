@@ -16,7 +16,13 @@ pipeline{
         stage("Sonarqube analysis"){
             steps{
                 withSonarQubeEnv("${SONARQUBE_ENV}"){
-                   sh 'mvn clean package sonar:sonar'
+                     sh '''
+                       sonar-scanner \
+                        -Dsonar.projectKey=Bingo-app \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://localhost:9000 \
+                        -Dsonar.login=sqp_391af2ec3d8541c127e8bc925175c4ef8d3e4f0f 
+                    '''
                 }
             }
         }
