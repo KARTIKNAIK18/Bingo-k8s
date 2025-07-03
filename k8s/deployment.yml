@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bingo-deployment
+  namespace: Bingo
+  labels:
+    app: Bingo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: Bingo
+  template:
+    metadata:
+      labels:
+        app: Bingo
+    spec:
+      containers:
+      - name: Bingo-Deployment
+        image: Bingo:latest
+        ports:
+        - containerPort: 3000
