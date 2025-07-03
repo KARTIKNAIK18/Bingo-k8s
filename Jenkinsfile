@@ -2,7 +2,7 @@ pipeline{
     agent any
      tools {
         // Replace with your SonarQube Scanner tool name
-        sonarQubeScanner 'SonarScanner'
+        sonarqube 'SonarScanner'
     }
 
        environment {
