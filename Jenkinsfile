@@ -7,6 +7,11 @@ pipeline{
         SONARQUBE_ENV = 'sonarqube' // Replace with your SonarQube server name from Jenkins settings
     }
 
+    stage('clean workspace'){
+        steps{
+                cleanWs()
+            }
+        }
     stages{
         stage("git cheackout"){
             steps{
