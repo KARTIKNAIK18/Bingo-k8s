@@ -13,26 +13,26 @@ pipeline{
                     git branch: 'main', url: 'https://github.com/KARTIKNAIK18/Bingo-k8s.git'
             }
         }
-        // stage("Sonarqube analysis"){
-        //     steps{
-        //         withSonarQubeEnv("${SONARQUBE_ENV}"){
-        //              sh '''
-        //                 sonar-scanner \
-        //                 -Dsonar.projectKey=Bingo-app \
-        //                 -Dsonar.sources=. \
-        //                 -Dsonar.host.url=http://localhost:9000 \
-        //                 -Dsonar.login=sqp_8cc71bc5604aed6982f02a0c758dbc32e6a0029b 
-        //             '''
-        //         }
-        //     }
-        // }
-        // stage("Quality Gate"){
-        //     steps{
-        //         timeout(time: 1, unit: 'HOURS') {
-        //         waitForQualityGate abortPipeline: true
-        //       }
-        //     }
-        // }
+        stage("Sonarqube analysis"){
+            steps{
+                withSonarQubeEnv("${SONARQUBE_ENV}"){
+                     sh '''
+                        sonar-scanner \
+                        -Dsonar.projectKey=Bingo-app \
+                        -Dsonar.sources=. \
+                        -Dsonar.host.url=http://localhost:9000 \
+                        -Dsonar.login=sqp_8cc71bc5604aed6982f02a0c758dbc32e6a0029b 
+                    '''
+                }
+            }
+        }
+        stage("Quality Gate"){
+            steps{
+                timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+        }
         stage("docker hub login"){
             steps{
                 echo "trying to login docker-hub ........."
