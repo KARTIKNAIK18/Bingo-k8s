@@ -39,24 +39,11 @@ pipeline{
                 withCredentials([usernamePassword(credentialsId: 'docker-cred',usernameVariable: 'DOCKER_USER',passwordVariable: 'DOCKER_PASS')]){
                 sh '''
                     echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                    // docker build -t $DOCKER_USER/bingo:latest .
-                    // docker push $DOCKER_USER/bingo:latest
+                    docker build -t kartiknaik/bingo:latest .
+                    docker push kartiknaik/bingo:latest
                     '''
                 }
             }
         }
-        stage("push the image to docker-hub"){
-            steps{
-                echo "uplodaing the image"
-                script{
-                    sh 'docker docker build -t kartiknaik/bingo:latest .'
-                   sh 'docker push $DOCKER_USER/bingo:latest'
-                }
-                echo "image uploded successfully"
-            }
-            
-        }
-
-
     }
 }
