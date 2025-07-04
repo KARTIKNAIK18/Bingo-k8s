@@ -39,8 +39,9 @@ pipeline{
                 withCredentials([usernamePassword(credentialsId: 'docker-cred',usernameVariable: 'DOCKER_USER',passwordVariable: 'DOCKER_PASS')]){
                 sh '''
                     echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                    docker build -t kartiknaik/bingo:latest .
-                    docker push kartiknaik/bingo:latest
+                    docker build -t  $DOCKER_USER/bingo:latest .
+                    docker images
+                    docker push  $DOCKER_USER/bingo:latest
                     '''
                 }
             }
