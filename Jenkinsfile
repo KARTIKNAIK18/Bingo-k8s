@@ -39,7 +39,6 @@ pipeline{
                 '''
               }
             }
-        }
         // stage("docker hub login"){
         //     steps{
         //         echo "trying to login docker-hub ........."
