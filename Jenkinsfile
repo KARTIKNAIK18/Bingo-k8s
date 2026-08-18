@@ -34,8 +34,9 @@ pipeline{
         // }
         stage("Quality Gate"){
             steps{
-                sh    ```
+                sh  '''
                 echo "Successfully coplted CI "
+                '''
               }
             }
         }
